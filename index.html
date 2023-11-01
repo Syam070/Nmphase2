@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #chat-container {
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #fff;
+        }
+        #chat-display {
+            border: 1px solid #eee;
+            border-radius: 5px;
+            min-height: 200px;
+            padding: 10px;
+            overflow-y: scroll;
+            background-color: #f5f5f5;
+        }
+        .user-input {
+            width: 70%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .send-button {
+            width: 28%;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0074D9;
+            color: white;
+            cursor: pointer;
+        }
+        .clear-button {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #FF5733;
+            color: white;
+            cursor: pointer;
+        }
+        .title {
+            font-weight: bold;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .entertainment {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div class="title">Chatbot</div>
+        <div id="chat-display" class="chat-display">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div class="input-container">
+            <input type="text" id="user-input" class="user-input" placeholder="Type your message...">
+            <button id="send-button" class="send-button">Send</button>
+        </div>
+        <div class="input-container">
+            <button id="clear-button" class="clear-button">Clear Chat</button>
+        </div>
+        <div class="entertainment">
+            <!-- Add entertaining elements here (e.g., images, GIFs, etc.) -->
+        </div>
+    </div>
+    <script>
+        const chatDisplay = document.getElementById("chat-display");
+        const userInput = document.getElementById("user-input");
+        const sendButton = document.getElementById("send-button");
+        const clearButton = document.getElementById("clear-button");
+
+        // Function to add a message to the chat display
+        function addMessage(message, isUser) {
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add(isUser ? "user-message" : "bot-message");
+            messageDiv.textContent = message;
+            chatDisplay.appendChild(messageDiv);
+        }
+
+        // Event listener for the "Send" button
+        sendButton.addEventListener("click", () => {
+            const userMessage = userInput.value;
+            if (userMessage) {
+                addMessage("You: " + userMessage, true);
+                // Call a function to send user input to the chatbot and display its response
+                // Replace the following line with your chatbot interaction code
+                // chatbotResponse(userMessage);
+            }
+        });
+
+        // Event listener for the "Clear Chat" button
+        clearButton.addEventListener("click", () => {
+            chatDisplay.innerHTML = ""; // Clear chat display
+        });
+
+        // Event listener for the "Enter" key
+        userInput.addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+                sendButton.click(); // Trigger a click on the "Send" button when Enter is pressed
+            }
+        });
+    </script>
+</body>
+</html>
